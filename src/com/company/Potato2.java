@@ -17,11 +17,18 @@ class Potato2
         for(int i = 0; i < imoNum; i++)
         {
             imos[i] = new Imo1_4() {
+                int _size;
                 public boolean hokuhoku(int temp) {
                     if(temp > 100)return true;
                     return false;
                 }
-            };
+                //実質的なコンストラクタでは（1番最初に呼び出されるので）
+                public Imo1_4 setSize(int size)
+                {
+                    _size = size;
+                    return this;
+                }
+            }.setSize(imoSize);
         }
 
         //たくさんの芋を並列して一気に焼いてる
@@ -36,7 +43,7 @@ class Potato2
                 }
 
                 //実質的なコンストラクタでは（1番最初に呼び出されるので）
-                public Object init(Imo1_4 imo) {
+                public  Runnable init(Imo1_4 imo) {
                     _imo = imo;
                     return this;
                 }
